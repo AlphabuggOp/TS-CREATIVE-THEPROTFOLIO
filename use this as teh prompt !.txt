@@ -1,0 +1,216 @@
+# 🗡️ PROJECT SANCTUM — THE PORTFOLIO
+## Complete Master Briefing for the Builder Agent
+> **To the Arena.ai agent reading this:** This is the entire project, in one document. Read it all. Internalize it. Do not ask the user to repeat anything — everything you need is here. When you finish reading, reply with **"UNDERSTOOD — here is my plan"** followed by a build plan. Then begin building, phase by phase, ending each phase with a report and waiting for "continue."
+---
+# PART 1 — WHAT YOU ARE BUILDING
+You are building a **showcase portfolio website** for **PROJECT SANCTUM**, a hackathon submission (TS '26 Creative, a Star Wars-themed creative-tech event). The portfolio is the "over-the-top" leave-behind: instead of handing judges a boring Google Drive folder, the team hands them one beautiful, cinematic website that lets them browse *everything the team made* — the live app, the pitch deck, the promo video, the documents, and the team itself — all in one on-brand place.
+**The single most important instruction in this whole document:** the portfolio must follow the project's own metaphor. PROJECT SANCTUM is about a network that hides in plain sight. So the portfolio itself must hide in plain sight too — it opens as a decoy, hides behind a password, and only reveals itself after a "banger" loading screen. If the portfolio doesn't do this, it has failed the assignment no matter how pretty it is.
+---
+# PART 2 — WHAT PROJECT SANCTUM IS (study this deeply)
+## 2.1 — The one-line pitch
+> *"A website that pretends not to exist, until you prove you're worthy."*
+## 2.2 — The story
+Set in Star Wars, after the Purge (Order 66). The Jedi are gone. The Empire surveils every public channel. The survivors — Force-sensitives and their sympathizers, organized as the **HCET Syndicate** — must recruit new members in total secrecy.
+The problem: a rebellion needs people, but any open call for recruits gets found and burned within hours.
+The answer: **SANCTUM** — a secret network that **hides its front door in plain sight as a dead, boring website.** The network doesn't advertise. It doesn't even look like a network. It looks like an abandoned blog. And the door itself — the act of discovering it — is the filter. Only someone paying real attention (or someone worthy) finds their way in.
+## 2.3 — The mechanics (what the real product does)
+- **Two-layer disguise.** The product is literally two websites in one: a convincing abandoned blog (the "cover" / "decoy") and the hidden network (the "Sanctum"). The decoy is not a splash screen — it's a complete, believable, standalone blog.
+- **The unlock ritual.** Hidden in the decoy's photo gallery is ONE photo that is wrong — a faint glowing ring. The visitor must:
+  1. Notice the wrong photo.
+  2. **Click it three times** (each knock adds a static flicker and brightens the ring).
+  3. A code field appears: **"THE DOOR ASKS."**
+  4. Type the code — which the blog itself quietly teaches you, buried in one of its posts.
+  5. The site tears open (static wipe) into the real network.
+- **The four acts (inside the Sanctum):**
+  - **Act 0 — THE SEAL:** a loader that behaves like establishing a covert uplink. A sigil draws itself; an honest percentage counter runs; status lines decode; at 100% the veil iris-opens.
+  - **Act 1 — THE GATE:** 620 viewport-heights of scroll-driven cinematic. You scroll, and you fly — through a portal (a custom GLSL shader) into hyperspace.
+  - **Act 2 — THE TRIALS:** three *playable* games — **SIGNAL** (memory), **FOCUS** (steadiness), **CHOICE** (judgment) — judged by a voice-guided **Archivist**.
+  - **Act 3 — THE SANCTUM:** the hub — a 3D holo-map of beacons/threat zones, a dead-drop cipher (your sigil is the key), an A* safe-lane router, archives, a council war-room, and a **Beacon** that forges recruitment posters.
+- **The Ceremony:** your score (0–9) is minted into a **Rank** (Youngling/Padawan/Knight), a **Callsign**, and a **Sigil** forged from how you played. All persisted.
+- **The panic key `~`:** press it, and the whole network instantly vanishes back into the dead blog. Security theatre, made literal.
+## 2.4 — The two decoys (CRITICAL — this is the signature move)
+The team made TWO different decoys, to prove the disguise is a *system*, not a one-off gimmick:
+| Decoy | Site | Code |
+|---|---|---|
+| "Andoria Deep-Sky Archive" — a dead astronomy blog (est. 1998) | the **pitch deck** (project-sanctum-ppt.vercel.app) | `HIDE` |
+| "SIGNAL & STATIC" — a dead shortwave-radio blog (est. 2008) | the **app** (ts-creative.vercel.app) | `0528` |
+**For the portfolio, use the password `0528`** — it matches the app's code, and it's the number the app's blog teaches ("the hum at 0528").
+## 2.5 — The team
+**Team CCA** — Colonels Central Academy:
+- **Aarav Choudhary** — Product & Story
+- **Jeehan Kwatra** — Design & Motion
+- **Anuj Phulera** — Engineering
+Event: **TS '26 Creative · Tech Syndicate**. Judged on: **Functionality · UI/UX · Aesthetic · Creativity · Originality**.
+---
+# PART 3 — STUDY THESE (do this first, with your tools)
+Use your `fetch_page` tool to read these and internalize the voice, structure, and feel:
+1. **https://ts-creative.vercel.app/** — the app's decoy, "SIGNAL & STATIC". Read EVERY blog post. Notice the voice: the blogger signs posts "— m.", talks about the UVB-76 "Buzzer", numbers stations, the Wow! Signal, and crucially a post titled **"the hum at 0528"** that says: *"Three knocks. Always three... It answers at 0528. Remember the number the way you remember a doorbell."* This is the project teaching its own code. Internalize this tone — the portfolio's copy should echo it.
+2. **https://project-sanctum-ppt.vercel.app/** — the deck's decoy, "Andoria Deep-Sky Archive". Note it's a *different* disguise (astronomy, not radio).
+3. **Repos** (if you can reach them via `gh` or `fetch_page`):
+   - https://github.com/AlphabuggOp/ts-creative (the app)
+   - https://github.com/AlphabuggOp/Ts-Creative-PPT (the deck)
+4. **web_search** 2–3 award-winning portfolio/showcase sites (e.g. "best cinematic developer portfolio 2026", "award-winning portfolio site") for layout inspiration — but do NOT copy their identity. Keep SANCTUM's.
+**Internalize the design language** (this is what makes it look like SANCTUM, not a generic dark site):
+- Deep-space **ink** background, **kyber** teal glow, **ember** gold for attention, **threat** red reserved for danger.
+- Cinzel serif for display, Space Grotesk for UI, IBM Plex Mono for "machine voice" labels.
+- Film grain, faint scanlines, subtle vignette, teal/orange cinematic grade, corner-bracket HUD framing.
+- The motion law: **"motion must mean something"** — nothing moves for decoration.
+---
+# PART 4 — THE PORTFOLIO SPEC (build exactly this)
+## 4.1 — The decoy entry (what loads first)
+The portfolio opens as a **decoy**. Two acceptable approaches (pick the first — it's more striking):
+**(A) The beautiful 3D decoy:** a full-screen animated **SANCTUM wordmark** in steel-gradient Cinzel, with a slowly orbiting portal/ring glowing behind it. It looks like a premium movie-title card. Minimal text. Almost nothing reveals this is a portfolio.
+**(B) The "boring cover" decoy:** a dead-looking page in the style of the project's blogs (elegant, not actually ugly).
+**The hidden way in (the ritual, mirroring the project):**
+1. A subtle, discoverable interaction reveals a password field. Ideas: a faint pulsing sigil in the corner; a barely-glowing ring; or "three knocks" (three rapid clicks on a specific element). Make it discoverable but not obvious — the difficulty is *noticing*, not solving.
+2. The password is **`0528`**.
+3. Wrong password → a shake animation + **"ACCESS DENIED"** (echo the app's denial language).
+4. Correct password → trigger the loading screen.
+5. Keep a documented shortcut for the team (e.g. `?unlock` query param, or a hidden key combo) so you can skip the ritual during development and demos.
+## 4.2 — The loading screen (the "banger" moment)
+On correct password, play a real sequence (NOT a boring spinner):
+- A **sigil that draws itself** (SVG stroke-dashoffset animation).
+- An **honest progress counter** — synced to actual asset loading, with a minimum-duration floor (~1.5s) so it never flashes and never lies.
+- Rotating status lines in the project's voice: `CALIBRATING KYBER LATTICE → ESTABLISHING COVERT UPLINK → DECRYPTING TRANSMISSIONS → … → CHANNEL OPEN.`
+- An **iris-open / clip-path circle reveal** transition into the portfolio (the project's signature loader moment).
+- Optional ambient audio (arm only on first user gesture — autoplay policy). A soft chime on "CHANNEL OPEN" is a plus.
+## 4.3 — The portfolio home (after the reveal)
+Hero: the SANCTUM wordmark, the one-line pitch ("the network that pretends not to exist"), the team name, and a clear "explore" call-to-action. A persistent HUD-style header (wordmark + section nav) and a custom kyber cursor.
+## 4.4 — The ~22 sections (build ALL, in this order)
+1. **Hero / Home** — wordmark, pitch line, team, CTA.
+2. **The Story** — the world, the problem, the answer (narrative, not bullets).
+3. **The Journey** — the four acts (Seal → Gate → Trials → Sanctum) as a visual timeline.
+4. **The Two Decoys** — side-by-side explainer: astronomy blog (deck) vs shortwave blog (app), and WHY two disguises.
+5. **The Unlock Ritual** — an interactive explainer of the 3-knock + code ritual. A small playable "knock three times" demo widget is a huge plus.
+6. **The Gate** — showcase the scroll-cinematic (screenshot / GIF / embedded video).
+7. **The Trials** — three cards for Signal / Focus / Choice, each with a short demo loop.
+8. **The Ceremony** — Rank / Callsign / Sigil explainer.
+9. **The Sanctum Hub** — the six tools (holo-map, cipher, router, archives, council, beacon).
+10. **The Panic Key** — explain `~` (a small "press ~" easter egg that hides the site as a gag is a wonderful touch).
+11. **The Craft** — the stack + design system.
+12. **The Brand** — color tokens, type scale, motion law.
+13. **The Team** — three member cards (avatar, name, role, one-line bio).
+14. **The Showcase / Live Demos** — THE KEY PAGE (see 4.5).
+15. **The Files / Downloads** — every deliverable as a styled download card (see 4.6).
+16. **The Video** — embedded promo video player (see 4.7).
+17. **The Documents** — inline PDF viewers (see 4.7).
+18. **The Repos** — cards linking to both GitHub repos.
+19. **The Write-Ups** — the 100-word write-up as a quote card.
+20. **The Journey/Process** — optional "how we built it" timeline.
+21. **Contact / CTA** — "walk us through the app" + team details.
+22. **Footer** — "the network remembers" + credits + back-to-top + hidden reset-access.
+## 4.5 — The Showcase frames (the most important creative feature)
+On the **Live Demos** page:
+- Show **framed browser-mockup cards** — mini mock browser windows with a fake URL bar + traffic-light dots — one for the **app**, one for the **deck**.
+- Each frame displays the **first screenshot** of that site (its decoy blog, since that's what loads first — or a tasteful hero screenshot). Use your headless-browser screenshot ability (Part 6).
+- **Clicking a frame redirects** (or opens a new tab) to the live site.
+- Add a **"open live →"** hover state (frame lifts, glows, a "GO" affordance).
+- Optional wonderful: a small auto-playing **animated preview** inside each frame (a short looping GIF/WebM of the site's intro) so the frame feels alive, not static.
+## 4.6 — The Files / Downloads page
+Every deliverable becomes a styled download card: icon by type (video/deck/PDF), filename, one-line description, and a **Download** button that triggers a real download (serve from the repo's `/files/` folder or a `?download=` route with a proper `Content-Disposition` header). Group them: **Watch** (video), **Present** (PPTX), **Read** (PDFs), **Explore** (links + repos).
+**The deliverable files (the team will place these in the repo's `/files/` folder — read them from there, do NOT hard-code a Drive URL as the only source):**
+- `SANCTUM-Promo.mp4` — 60s promo video (1080p60)
+- `SANCTUM-Deck.pptx` — physical pitch deck (16 slides)
+- `SANCTUM-WriteUp.pdf` — the ≤100-word write-up
+- `SANCTUM-UIUX.pdf` — UI/UX design doc
+- `SANCTUM-JudgesGuide.pdf` — how to enter the network
+- (optional) `SANCTUM-FINALS-PLAYBOOK.pdf` — the team's own prep doc
+## 4.7 — Internal viewers (don't just link — let them view in-page)
+- **Video:** embed `SANCTUM-Promo.mp4` with a native `<video>` player (poster frame, controls, mute/unmute). Play it inside the portfolio.
+- **PDFs:** render the write-up, UI/UX doc, and judge's guide in an inline viewer (iframe/embed or canvas-based PDF renderer). A clean "open in new tab" fallback is required.
+- **PPTX:** a styled "download to present" card is fine (in-browser PPTX rendering is unreliable).
+## 4.8 — Design system (MUST match exactly)
+```
+--ink: #07090f      (void / base)
+--kyber: #67e8f9    (the network's light)
+--kyber-dim: #2e8fa3
+--ember: #e8b44c    (attention / warmth)
+--threat: #ff3b3b   (danger only)
+--bone: #e8e6df     (primary text)
+--ghost: #9aa3b2    (muted text)
+```
+**Fonts:** Cinzel (display) · Space Grotesk (UI) · IBM Plex Mono (machine).
+**Texture:** deep-space dark, film grain, faint scanlines, subtle vignette, teal/orange cinematic grade (cyan shadows, warm highlights), corner-bracket HUD framing.
+**Motion law:** "motion must mean something" — nothing shakes for no reason. Prefer purposeful entrances (fade/rise/scramble/iris) over decorative noise.
+**Stack:** Vite + React + TypeScript · three.js · GSAP · framer-motion · split-type · @fontsource (self-host the three fonts) · zustand (for unlock state/persistence).
+**Cursor:** custom kyber ring + dot (morphs over interactive elements) on desktop.
+---
+# PART 5 — YOUR WORKFLOW METHODOLOGY (this is HOW you build it)
+This project was built by a prior agent using a specific discipline. Use it, or you will burn out and ship something broken.
+1. **Keep a LOGBOOK.** Create `PLANNING/LOGBOOK.md` first. Every turn, append a dated entry: what you studied, what you built, what you verified, what's next. This is your memory across turns — the sandbox will NOT remember for you.
+2. **Write a plan before code.** "Think → map → timeline → implement." A `PLANNING/PLAN.md` with the full build order comes first.
+3. **Use a SELF-REVIEW HARNESS ("the eyes").** Never ship a screen blind. After every page/section, screenshot it (Part 6), read the image back, and fix contrast/overflow/blank text/broken text. Screenshot at 1366×768 (the user's real laptop). Make a reusable `scripts/shoot.mjs` that screenshots any route, and commit the browser libs so it survives sandbox wipes.
+4. **Work in PHASES, one `continue` at a time.** You have ~10 tool calls per turn. Don't try to do everything at once. Build phase by phase; end each phase with: eyes-verified screenshots + a logbook entry + a short "here's what I shipped, here's what's next" report. The user says "continue" to advance you.
+5. **Commit early, commit often.** If the sandbox wipes mid-build, you lose nothing.
+6. **The wow-moment law:** every page should contain ONE thing nobody expects. The decoy→password→loading reveal. The showcase frames that redirect. The panic-key gag. Pick one per section and make it land.
+---
+# PART 6 — YOUR TOOLSET ("powers") AND HOW TO USE THEM
+Your Arena agent has these tools. Use them aggressively to *study first, then build*.
+**Research / web:**
+- `web_search` (depth 1–3) — research techniques, find references, verify facts.
+- `fetch_page` — fetch any URL and read it as markdown. **Use this to read the two live sites.**
+- `image_search` — pull real images from the web (decoy textures, references).
+**Files / build:**
+- `read_file` / `write_file` / `edit_file` — full workspace access.
+- `bash` — run `npm install`, `npm run dev`, `node scripts`, `python3`. Node + Python available; npm registry + PyPI reachable.
+- `generate_image` — AI-generate imagery (portal backdrops, team avatars, poster art).
+- `generate_speech` (+ `add_voice` to audition voices) — voiceover if wanted.
+- `present_file` — show a file to the user.
+- `start_process` / `get_process_output` — run dev servers and watch logs; this gives the live preview (bind to `0.0.0.0`).
+**Headless rendering / screenshots (this is how you make the showcase frames):**
+- Install `puppeteer-core` + `@sparticuz/chromium`.
+- Extract its bundled NSS/NSPR system libs from `node_modules/@sparticuz/chromium/bin/al2023.tar.br`: brotli-decompress it (Node `zlib.brotliDecompressSync`), `tar xf` it, copy the `.so` files into a folder, and launch with `LD_LIBRARY_PATH` pointing there.
+- Screenshot any page (including the two live sites) at any viewport → use these as showcase-frame images.
+**Video/audio:**
+- `ffmpeg` via Python's `imageio-ffmpeg`: `pip install imageio-ffmpeg`, then `python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())"`.
+- Use it to trim/loop the promo video into short preview GIFs/WebMs, extract poster frames, compress.
+**Docs/build tools (installable):** `pptxgenjs` (PPTX), `pdf-lib` or `fpdf2` (PDF), `Pillow` + `qrcode` (compositing + QR).
+---
+# PART 7 — SANDBOX SURVIVAL GUIDE (read this — it saves hours)
+1. **`node_modules` and `/tmp` get wiped at turn boundaries.** Re-run `npm install` whenever a turn can't find deps. Commit everything load-bearing (fonts, browser libs, generated assets).
+2. **Non-committed files vanish.** Once you generate showcase screenshots or a build, commit them or they're gone next turn.
+3. **Only npm + PyPI + Arena tools reach the network.** Direct `curl`/`git clone` to github.com often fails with a TLS handshake error. Use `fetch_page`/`web_search`/`image_search` for web content.
+4. **Headless Chromium (SwiftShader) renders DIMMER than a real GPU.** Your screenshots look darker than the real site. Don't over-brighten; build in a generous contrast margin.
+5. **`background-clip: text` + a CSS `filter`/`drop-shadow` BREAKS in headless Chromium** — gradient text renders dark/invisible. For guaranteed-visible big text, use solid bright fill + `text-shadow` halo, NOT gradient-clip. Verify title visibility with a headless screenshot + pixel check.
+6. **Don't gate critical logic on `requestAnimationFrame`/animation `onComplete`** — on slow machines rAF can stall. Use wall-clock `setTimeout` for anything that MUST happen (unlock, slide change, loader completion).
+7. **Git is session-locked to one `arena/…` branch.** When the PR merges, remote access ends — finish pushes BEFORE the user merges.
+8. **An Arena `commit-msg` hook may auto-append `Co-authored-by: arena-agent`.** At the very end, remove `.git/hooks/commit-msg` and squash to one clean commit (zero AI trace for judges).
+9. **Vite dev server:** set `server.host: true` + `allowedHosts: true` in `vite.config` or the preview host is rejected.
+10. **Fonts:** self-host via `@fontsource`. For Python (Pillow) image work, only system fonts (DejaVu) exist unless you bundle a TTF.
+---
+# PART 8 — THE BUILD PLAN (9 phases)
+Build in this order. Each phase ends with eyes-verified screenshots + a logbook entry + a report. The user says "continue" between phases.
+- **Phase 1 — Foundation.** Scaffold Vite + React + TS. Install all deps. Set up the design tokens (CSS variables), self-hosted fonts, film grain + scanline overlays, custom cursor, HUD header. Get the live preview working.
+- **Phase 2 — The Decoy + Password.** The 3D (or boring) decoy landing. The hidden unlock interaction (3 knocks / sigil). The password field (0528, shake on wrong, ACCESS DENIED). The `?unlock` shortcut. The loading screen (sigil draw + counter + status lines + iris reveal).
+- **Phase 3 — Home + Story + Journey.** The hero, the narrative story section, and the four-act journey timeline.
+- **Phase 4 — The Two Decoys + Unlock Ritual + Gate.** Side-by-side decoy explainer, the interactive ritual demo, and the Gate showcase.
+- **Phase 5 — Trials + Ceremony + Sanctum Hub + Panic Key.** The three trial cards, ceremony explainer, six hub tools, and the `~` panic gag.
+- **Phase 6 — Craft + Brand + Team.** The stack/design-system sections and the three team cards.
+- **Phase 7 — Showcase + Files + Viewers.** The browser-mockup showcase frames (screenshot both live sites, wire the redirects), the download cards, and the in-page video + PDF viewers.
+- **Phase 8 — Repos + Write-Ups + Process + Contact + Footer.** The remaining sections.
+- **Phase 9 — Deploy + QR + Scrub.** Deploy to Vercel, generate the QR code (pointing to the live portfolio URL), and scrub the repo (remove the commit-msg hook, squash to one clean commit, zero AI trace).
+---
+# PART 9 — DEFINITION OF DONE
+- [ ] Opens as a decoy; password `0528` unlocks; wrong code denies with a shake.
+- [ ] "Banger" loading screen (sigil draw + honest counter + status lines + iris reveal).
+- [ ] Portfolio home with hero, pitch line, team, nav.
+- [ ] All ~22 sections present and styled.
+- [ ] Showcase frames show real screenshots of both sites and redirect on click.
+- [ ] Every deliverable file downloadable from the Files page.
+- [ ] Promo video plays in-page; PDFs view in-page.
+- [ ] Team cards (Aarav / Jeehan / Anuj) with roles.
+- [ ] Both GitHub repo links present.
+- [ ] Matches the SANCTUM design system exactly.
+- [ ] Responsive, custom cursor, accessible (reduced-motion, keyboard).
+- [ ] Deployed to Vercel with a clean shareable URL.
+- [ ] Zero AI/tooling trace in the public repo.
+---
+# PART 10 — YOUR FIRST REPLY
+After reading this entire document, reply with:
+1. **"UNDERSTOOD"** — one line confirming you've absorbed the project and the decoy/password/loading requirement.
+2. A one-paragraph summary of PROJECT SANCTUM in your own words (proving you studied it).
+3. Your build plan (the 9 phases, restated).
+4. The word **"READY — say go to begin Phase 1."**
+Do NOT begin building until the user says go. Do NOT ask the user to repeat any of this — it's all here.
+---
+*The portfolio is the door to everything the team made. Make it beautiful enough that the judges want to walk through it. 🗡️*
