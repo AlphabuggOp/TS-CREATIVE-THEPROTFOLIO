@@ -165,6 +165,20 @@ export const FILES = [
     kind: 'pdf',
     line: 'How to enter the app. Code: 0528.',
   },
+  {
+    group: 'Explore',
+    name: 'SANCTUM-LiveLinks.txt',
+    href: '/files/SANCTUM-LiveLinks.txt',
+    kind: 'txt',
+    line: 'The Drive note: live app + live deck URLs.',
+  },
+  {
+    group: 'Explore',
+    name: 'SANCTUM-RepoLinks.txt',
+    href: '/files/SANCTUM-RepoLinks.txt',
+    kind: 'txt',
+    line: 'The Drive note: both GitHub repos.',
+  },
 ] as const
 
 export type ChamberId = 'lives' | 'theater' | 'vault' | 'dossier' | 'rite' | 'council' | 'forge'

@@ -16,10 +16,14 @@ import {
   TRIALS,
   type ChamberId,
 } from '../data/content'
-import { knockTick } from '../lib/audio'
+import { armAudio, knockTick, openTone, startDrone, stopDrone } from '../lib/audio'
 import { useVault } from '../store'
 import BrowserFrame from './BrowserFrame'
+import Scramble from './Scramble'
 import Sigil from './Sigil'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 function isChamber(id: string | null): id is ChamberId {
   return EXHIBITS.some((e) => e.id === id)
@@ -62,7 +66,7 @@ function Lives() {
   return (
     <div className="room room-lives">
       <p className="kicker">01 · TWO DISGUISES</p>
-      <h2 className="section-title">THE LIVES</h2>
+      <Scramble as="h2" className="section-title" text="THE LIVES" />
       <p className="lede">The cover is the concept. Click a frame. You leave this hangar for the live network.</p>
       <div className="frame-hangar">
         <BrowserFrame
@@ -101,7 +105,7 @@ function Theater() {
     <div className="room room-theater">
       <div className="cinema-meta">
         <p className="kicker">02 · SIXTY SECONDS</p>
-        <h2 className="section-title">THE THEATER</h2>
+        <Scramble as="h2" className="section-title" text="THE THEATER" />
       </div>
       <video
         className="cinema"
@@ -119,12 +123,12 @@ function Theater() {
 }
 
 function Vault() {
-  const groups = ['Watch', 'Present', 'Read'] as const
+  const groups = ['Watch', 'Present', 'Read', 'Explore'] as const
   return (
     <div className="room">
       <p className="kicker">03 · THE DRIVE, HUNG</p>
-      <h2 className="section-title">THE VAULT</h2>
-      <p className="lede">Every deliverable that used to live in a folder. Real downloads.</p>
+      <Scramble as="h2" className="section-title" text="THE VAULT" />
+      <p className="lede">Every deliverable that used to live in a folder. Real downloads. All ten files from the archive.</p>
       <div className="stacks">
         {groups.map((g) => (
           <div key={g} className="stack">
@@ -148,7 +152,7 @@ function Dossier() {
   return (
     <div className="room">
       <p className="kicker">04 · READ IN PLACE</p>
-      <h2 className="section-title">THE DOSSIER</h2>
+      <Scramble as="h2" className="section-title" text="THE DOSSIER" />
       <div className="desk">
         <div className="desk-quotes">
           <blockquote className="quote">
@@ -190,7 +194,7 @@ function Rite() {
   return (
     <div className="room">
       <p className="kicker">05 · SECURITY THROUGH LORE</p>
-      <h2 className="section-title">THE RITE</h2>
+      <Scramble as="h2" className="section-title" text="THE RITE" />
       <p className="lede">
         After the Purge every public channel is watched. SANCTUM hides its front door inside a dead
         website — and makes finding that door the filter. The password is taught, never told.
@@ -226,7 +230,7 @@ function Council() {
   return (
     <div className="room">
       <p className="kicker">06 · COLONELS CENTRAL ACADEMY</p>
-      <h2 className="section-title">THE COUNCIL</h2>
+      <Scramble as="h2" className="section-title" text="THE COUNCIL" />
       <div className="thrones">
         {TEAM.map((m) => (
           <article key={m.name} className="throne">
@@ -315,6 +319,38 @@ export default function Hangar() {
   const [chamber, setChamber] = useState<ChamberId | null>(null)
   const heroRef = useRef<HTMLHeadingElement>(null)
   useLenis(!chamber)
+
+  useEffect(() => {
+    const arm = () => armAudio()
+    window.addEventListener('pointerdown', arm, { once: true })
+    return () => window.removeEventListener('pointerdown', arm)
+  }, [])
+
+  useEffect(() => {
+    if (chamber) {
+      stopDrone()
+      openTone()
+      return
+    }
+    startDrone()
+    return () => stopDrone()
+  }, [chamber])
+
+  useEffect(() => {
+    if (chamber) return
+    const imgs = gsap.utils.toArray<HTMLElement>('.bay-visual img')
+    const tweens = imgs.map((el) =>
+      gsap.to(el, {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: { trigger: el.closest('.bay') ?? el, start: 'top bottom', end: 'bottom top', scrub: true },
+      }),
+    )
+    return () => {
+      tweens.forEach((t) => t.kill())
+      ScrollTrigger.getAll().forEach((s) => s.kill())
+    }
+  }, [chamber])
 
   useEffect(() => {
     if (!heroRef.current) return
@@ -569,7 +605,7 @@ const css = `
   margin-top: 18px;
 }
 .room-dl { display: inline-block; margin-top: 14px; letter-spacing: .22em; font-size: 11px; color: var(--ember); }
-.stacks { display: grid; grid-template-columns: .8fr .8fr 1.4fr; gap: 16px; margin-top: 28px; align-items: start; }
+.stacks { display: grid; grid-template-columns: 1fr 1fr 1.3fr 1fr; gap: 16px; margin-top: 28px; align-items: start; }
 .stack { display: grid; gap: 10px; }
 .stack-label { font-size: 11px; letter-spacing: .28em; }
 .slab {
