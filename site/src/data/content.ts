@@ -10,16 +10,19 @@ export const TEAM = [
     name: 'Aarav Choudhary',
     role: 'Product & Story',
     line: 'Wrote the world. Holds the eight-minute hook.',
+    plate: '/shots/plate-aarav.png',
   },
   {
     name: 'Jeehan Kwatra',
     role: 'Design & Motion',
     line: 'The steel, the grain, the motion law.',
+    plate: '/shots/plate-jeehan.png',
   },
   {
     name: 'Anuj Phulera',
     role: 'Engineering',
     line: 'The two-layer house, the rites, the persistence.',
+    plate: '/shots/plate-anuj.png',
   },
 ] as const
 

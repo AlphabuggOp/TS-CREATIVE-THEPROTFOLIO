@@ -102,7 +102,14 @@ function Theater() {
     <div className="chamber-body">
       <p className="kicker">02 · SIXTY SECONDS</p>
       <h2 className="section-title">THE THEATER</h2>
-      <video className="player" controls playsInline preload="metadata" src="/files/SANCTUM-Promo.mp4" />
+      <video
+        className="player"
+        controls
+        playsInline
+        preload="metadata"
+        poster="/shots/promo.jpg"
+        src="/files/SANCTUM-Promo.mp4"
+      />
       <p className="t-mono t-dim" style={{ marginTop: 12 }}>
         <a href="/files/SANCTUM-Promo.mp4" download data-hot>
           DOWNLOAD THE PROMO →
@@ -215,7 +222,7 @@ function Council() {
         {TEAM.map((m) => (
           <article key={m.name} className="card team-card">
             <div className="plate">
-              <Sigil size={54} />
+              <img src={m.plate} alt="" />
             </div>
             <h3 className="t-display">{m.name}</h3>
             <p className="t-mono t-kyber">{m.role}</p>
@@ -369,6 +376,15 @@ export default function Hangar() {
 
           {EXHIBITS.filter((e) => e.id !== 'lives').map((e) => (
             <button key={e.id} type="button" className="exhibit" data-hot onClick={() => open(e.id)}>
+              {e.id === 'theater' && <img className="exhibit-still" src="/shots/promo.jpg" alt="" />}
+              {e.id === 'forge' && <img className="exhibit-still" src="/shots/globe.jpg" alt="" />}
+              {e.id === 'council' && (
+                <div className="exhibit-plates">
+                  {TEAM.map((m) => (
+                    <img key={m.name} src={m.plate} alt="" />
+                  ))}
+                </div>
+              )}
               <span className="t-mono t-ember">{e.no}</span>
               <h2 className="t-display">{e.title}</h2>
               <p>{e.sub}</p>
@@ -396,12 +412,16 @@ export default function Hangar() {
             exit={{ clipPath: 'circle(0% at 50% 8%)' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <button type="button" className="back t-mono" data-hot onClick={close}>
-              ← THE HANGAR
-            </button>
             {(() => {
               const View = CHAMBERS[chamber]
-              return <View />
+              return (
+                <>
+                  <button type="button" className="back t-mono" data-hot onClick={close}>
+                    ← THE HANGAR
+                  </button>
+                  <View />
+                </>
+              )
             })()}
           </motion.div>
         )}
@@ -473,8 +493,8 @@ const css = `
 }
 .chamber-body { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
 .back {
-  position: fixed; top: 18px; left: 22px; z-index: 32;
-  font-size: 10px; letter-spacing: .22em; color: var(--ember);
+  display: block; width: min(1180px, calc(100% - 36px)); margin: 0 auto 16px;
+  font-size: 10px; letter-spacing: .22em; color: var(--ember); text-align: left;
 }
 .acts, .cards3, .duo, .swatches, .file-list { display: grid; gap: 14px; margin-top: 28px; }
 .acts { grid-template-columns: repeat(4, 1fr); }
@@ -505,7 +525,10 @@ const css = `
 .swatches b { font-size: 11px; letter-spacing: .16em; }
 .swatches span, .swatches em { font-size: 10px; color: var(--ghost); font-style: normal; }
 .team-card { text-align: center; }
-.plate { display: grid; place-items: center; height: 96px; margin-bottom: 8px; }
+.plate { display: grid; place-items: center; height: 140px; margin-bottom: 8px; }
+.plate img { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; }
+.exhibit-plates { display: flex; gap: 8px; margin: -6px 0 6px; }
+.exhibit-plates img { width: 42px; height: 42px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(103,232,249,.25); }
 .file-list { grid-template-columns: 1fr; }
 .file {
   display: grid; grid-template-columns: 88px minmax(0,1fr) auto; grid-template-rows: auto auto;
@@ -535,9 +558,10 @@ const css = `
 @media (max-width: 980px) {
   .exhibits, .acts, .cards3, .duo, .swatches { grid-template-columns: 1fr; }
   .span2 { grid-column: auto; }
-  .hud-who { display: none; }
+  .hud-who, .hud-nav { display: none; }
   .ritual { grid-template-columns: 1fr; }
   .file { grid-template-columns: 1fr; }
   .file span, .file b { grid-row: auto; }
+  .exhibit-shots { height: 160px; }
 }
 `

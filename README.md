@@ -4,7 +4,7 @@ Team CCA · Colonels Central Academy · TS ’26 Creative
 
 This repository is the **showcase archive** for PROJECT SANCTUM: the live app, the living deck, the promo, the documents, and the code — in one place, instead of a Drive folder.
 
-The site itself hides. It opens as a 3D title card. Three knocks. Password `0528`. Then the Seal.
+The site itself hides. It opens as a 3D title card. Three knocks. Password `0528`. Then the Seal. After that you are in **the hangar** — seven exhibits, not a 22-section blog.
 
 ## The site
 
