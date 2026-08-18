@@ -1,12 +1,12 @@
 # MULTI-PHASE OVERHAUL
 
-This is not done. Each continue is one phase. Do not skip to deploy.
+Each continue is one phase. Do not skip to deploy.
 
 | Phase | What | Status |
 |---|---|---|
-| **A** | Cinematic hangar floor — 100vh hero, film strip, exhibit runway | done |
-| **B** | Chambers as rooms — Theater cinema, Vault stacks, Lives hangar of frames | done |
-| **C** | Motion + every Drive file — scramble, scroll, drone, all 10 archive files | **done** |
-| **D** | Artifact density — more stills, process, script as an exhibit | next |
-| **E** | Deploy to Vercel (you click Deploy) | when A–D land |
+| **A** | Cinematic hangar floor | done |
+| **B** | Chambers as rooms | done |
+| **C** | Motion + every Drive file | done |
+| **D** | THE RECORD — process, stills, 8-minute script | **done** |
+| **E** | You deploy to Vercel | next when you want the URL |
 | **F** | QR from the live URL you send | last |

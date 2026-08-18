@@ -1,0 +1,108 @@
+SANCTUM — FINALS SCRIPT
+Team CCA — Aarav · Jeehan · Anuj · 8 minutes
+TS '26 Creative · Colonels Central Academy
+
+Clock: 8 minutes pitch + 2 setup + 3–4 Q&A. This script is ~6:30 spoken.
+Close on the QR. Do not open a Drive folder.
+
+────────────────────────────────
+SLIDE 01 — HOOK (Aarav) · ~40s
+────────────────────────────────
+Good morning. We're Team CCA — Aarav, Jeehan, and Anuj — and our project is called SANCTUM.
+
+SANCTUM is a website that pretends not to exist, until you prove you're worthy.
+
+After the Purge every public channel is watched. A rebellion still needs people. So the HCET Syndicate hid the front door inside a dead website — and made finding that door the filter.
+
+────────────────────────────────
+SLIDE 02 — PROBLEM (Aarav) · ~35s
+────────────────────────────────
+Survivors can't google a rebellion.
+
+An open call for recruits is found and burned within hours. So SANCTUM does not advertise. It does not even look like a network. It looks like an abandoned blog.
+
+The Empire sees a dead site. The worthy see the door.
+
+────────────────────────────────
+SLIDE 03 — IDEA (Aarav) · ~30s
+────────────────────────────────
+We built the network.
+
+Two layers. A convincing cover — and the Sanctum behind it. The cover is not a splash screen. It is a complete website. Discovery is the product.
+
+────────────────────────────────
+SLIDE 04 — JOURNEY (Jeehan) · ~25s
+────────────────────────────────
+Four acts. One rite of passage.
+
+The Seal. The Gate. The Trials. The Sanctum.
+You boot like a covert uplink. You scroll into hyperspace. You are tested. Then the network remembers you.
+
+────────────────────────────────
+SLIDE 05 — GATE (Jeehan) · ~35s
+────────────────────────────────
+A scroll is a journey.
+
+Six hundred and twenty viewport-heights. A procedural portal. A hyperspace tunnel. No video, no models — the setpiece is live.
+
+────────────────────────────────
+SLIDE 06 — TRIALS (Anuj) · ~50s
+────────────────────────────────
+Three rites judge the worthy.
+
+SIGNAL — you catch a drifting frequency.
+FOCUS — you hold a light while the void pulls.
+CHOICE — three dilemmas. No wrong answers. Only conviction. Every verdict becomes a proof game.
+
+────────────────────────────────
+SLIDE 07 — SANCTUM (Anuj) · ~30s
+────────────────────────────────
+Inside: the tools of a hidden war.
+
+A holo-map of beacons and threat zones. A dead-drop cipher. An A* safe-lane router. Archives. A council. A Beacon that forges recruitment posters.
+
+────────────────────────────────
+SLIDE 08 — CRAFT (Anuj) · ~30s
+────────────────────────────────
+Engineered to feel expensive.
+
+Vite, React, TypeScript. three.js. GSAP. Fully static. Zero servers. Rank, callsign, and sigil persist on-device. Audio arms on the first real gesture.
+
+────────────────────────────────
+SLIDE 09 — BRAND (Jeehan) · ~25s
+────────────────────────────────
+Motion must mean something.
+
+Ink. Kyber. Ember. Threat. Cinzel, Space Grotesk, IBM Plex Mono.
+Nothing shakes for no reason.
+
+────────────────────────────────
+SLIDE 10 — WHY IT WINS (Aarav) · ~40s
+────────────────────────────────
+Every judging criterion is a feature.
+
+Functionality — sixteen playable systems.
+UI/UX — the cover is judged as a website before the door opens.
+Aesthetic — the design system holds in the dark.
+Creativity — the door is the interview.
+Originality — two decoys prove the disguise is a system, not a gimmick.
+
+────────────────────────────────
+SLIDE 11 — SUMMARY (Aarav) · ~20s
+────────────────────────────────
+Hide in plain sight.
+
+Three knocks. The frequency the blog already taught you. Press tilde and it vanishes.
+
+────────────────────────────────
+SLIDE 12 — CLOSE (Aarav) · ~30s
+────────────────────────────────
+The network remembers.
+
+Don't take a Drive folder. Take the archive.
+
+[HOLD THE QR]
+
+That is SANCTUM — the portfolio. Same door. Everything we made is inside.
+
+Team CCA. Thank you.

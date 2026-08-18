@@ -10,7 +10,10 @@ import {
   FILES,
   HUB,
   LINKS,
+  PROCESS,
+  SCRIPT_BEATS,
   STACK,
+  STILLS,
   TEAM,
   TOKENS,
   TRIALS,
@@ -293,6 +296,45 @@ function Forge() {
   )
 }
 
+function Record() {
+  return (
+    <div className="room">
+      <p className="kicker">08 · HOW IT WAS MADE</p>
+      <Scramble as="h2" className="section-title" text="THE RECORD" />
+      <p className="lede">Process. Stills from the promo. The eight-minute script — download it, don't invent it on stage.</p>
+      <div className="path">
+        {PROCESS.map((p) => (
+          <article key={p.no} className="step">
+            <p className="t-mono t-ember">{p.no}</p>
+            <h3 className="t-display">{p.title}</h3>
+            <p>{p.body}</p>
+          </article>
+        ))}
+      </div>
+      <div className="still-wall">
+        {STILLS.map((s) => (
+          <figure key={s.src}>
+            <img src={s.src} alt={s.cap} />
+            <figcaption className="t-mono">{s.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div className="beats">
+        {SCRIPT_BEATS.map((b) => (
+          <article key={b.slide} className="beat">
+            <p className="t-mono t-ember">{b.slide}</p>
+            <p className="t-mono t-kyber">{b.who}</p>
+            <p>{b.line}</p>
+          </article>
+        ))}
+      </div>
+      <a className="t-mono room-dl" href="/files/SANCTUM-Script.txt" download data-hot>
+        DOWNLOAD THE FULL SCRIPT →
+      </a>
+    </div>
+  )
+}
+
 const CHAMBERS: Record<ChamberId, () => ReactElement> = {
   lives: Lives,
   theater: Theater,
@@ -301,6 +343,7 @@ const CHAMBERS: Record<ChamberId, () => ReactElement> = {
   rite: Rite,
   council: Council,
   forge: Forge,
+  record: Record,
 }
 
 const BAY_STILL: Record<ChamberId, string | null> = {
@@ -311,6 +354,7 @@ const BAY_STILL: Record<ChamberId, string | null> = {
   rite: '/shots/plate-aarav.png',
   council: null,
   forge: '/shots/globe.jpg',
+  record: '/shots/promo-48.jpg',
 }
 
 export default function Hangar() {
@@ -425,7 +469,7 @@ export default function Hangar() {
           </h1>
           <p className="hero-line t-mono t-kyber">the network that pretends not to exist</p>
           <p className="lede floor-lede">
-            Not a Drive folder. Seven exhibits. Walk the hangar. Open a chamber. Take what you need.
+            Not a Drive folder. Eight exhibits. Walk the hangar. Open a chamber. Take what you need.
           </p>
           <p className="t-mono t-ember walk">▽ WALK THE RUNWAY</p>
         </div>
@@ -666,9 +710,10 @@ const css = `
 .reset { margin-top: 18px; font-size: 10px; letter-spacing: .2em; color: var(--ghost); }
 @media (max-width: 980px) {
   .hud-who, .hud-nav { display: none; }
-  .bay, .bay.flip, .frame-hangar, .plaques, .stacks, .desk, .path, .cards3, .thrones, .wall, .benches {
+  .bay, .bay.flip, .frame-hangar, .plaques, .stacks, .desk, .path, .cards3, .thrones, .wall, .benches, .still-wall {
     grid-template-columns: 1fr;
   }
+  .beat { grid-template-columns: 1fr; }
   .bay.flip .bay-visual { order: 0; }
   .bay-visual, .bay-visual img { min-height: 200px; }
   .strip-track img { height: 110px; width: 176px; }

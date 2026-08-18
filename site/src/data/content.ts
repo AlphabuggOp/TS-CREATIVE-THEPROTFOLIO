@@ -179,9 +179,46 @@ export const FILES = [
     kind: 'txt',
     line: 'The Drive note: both GitHub repos.',
   },
+  {
+    group: 'Present',
+    name: 'SANCTUM-Script.txt',
+    href: '/files/SANCTUM-Script.txt',
+    kind: 'txt',
+    line: 'Finals script. ~6:30 spoken. Close on the QR.',
+  },
 ] as const
 
-export type ChamberId = 'lives' | 'theater' | 'vault' | 'dossier' | 'rite' | 'council' | 'forge'
+export const PROCESS = [
+  { no: '01', title: 'THE COVER FIRST', body: 'SIGNAL & STATIC had to survive as a blog before it was allowed to be a door.' },
+  { no: '02', title: 'THEN THE SECOND COVER', body: 'Andoria Deep-Sky proved the disguise is a system, not a one-off.' },
+  { no: '03', title: 'THEN THE RITES', body: 'Signal, Focus, Choice — playable, scored, remembered.' },
+  { no: '04', title: 'THEN THE RECORD', body: 'Ceremony, Field Log, nineteen quests, a sigil that is yours.' },
+  { no: '05', title: 'THEN THIS ARCHIVE', body: 'So a judge never has to open a Drive folder.' },
+] as const
+
+export const SCRIPT_BEATS = [
+  { who: 'Aarav', slide: '01 HOOK', line: 'A website that pretends not to exist, until you prove you are worthy.' },
+  { who: 'Aarav', slide: '02 PROBLEM', line: 'Survivors cannot google a rebellion.' },
+  { who: 'Aarav', slide: '03 IDEA', line: 'Two layers. The cover is a complete website. Discovery is the product.' },
+  { who: 'Jeehan', slide: '04 JOURNEY', line: 'Seal. Gate. Trials. Sanctum.' },
+  { who: 'Jeehan', slide: '05 GATE', line: 'A scroll is a journey. 620vh. No video, no models.' },
+  { who: 'Anuj', slide: '06 TRIALS', line: 'Signal. Focus. Choice. Every verdict becomes a proof game.' },
+  { who: 'Anuj', slide: '07 SANCTUM', line: 'Map, cipher, router, archives, council, Beacon.' },
+  { who: 'Anuj', slide: '08 CRAFT', line: 'Fully static. Zero servers. The Sanctum remembers.' },
+  { who: 'Jeehan', slide: '09 BRAND', line: 'Motion must mean something.' },
+  { who: 'Aarav', slide: '10 WHY', line: 'Every criterion is a feature.' },
+  { who: 'Aarav', slide: '11-12 CLOSE', line: 'Do not take a Drive folder. Take the archive. Hold the QR.' },
+] as const
+
+export const STILLS = [
+  { src: '/shots/promo-20.jpg', cap: 'Promo · the ring' },
+  { src: '/shots/promo.jpg', cap: 'Promo · prove yourself' },
+  { src: '/shots/globe.jpg', cap: 'Promo · the hidden war' },
+  { src: '/shots/app.png', cap: 'SIGNAL & STATIC · first page' },
+  { src: '/shots/deck.png', cap: 'Andoria · first page' },
+] as const
+
+export type ChamberId = 'lives' | 'theater' | 'vault' | 'dossier' | 'rite' | 'council' | 'forge' | 'record'
 
 export const EXHIBITS: {
   id: ChamberId
@@ -196,6 +233,7 @@ export const EXHIBITS: {
   { id: 'rite', no: '05', title: 'THE RITE', sub: 'How the door works.' },
   { id: 'council', no: '06', title: 'THE COUNCIL', sub: 'Aarav · Jeehan · Anuj' },
   { id: 'forge', no: '07', title: 'THE FORGE', sub: 'Stack, brand, source.' },
+  { id: 'record', no: '08', title: 'THE RECORD', sub: 'Process, stills, the 8-minute script.' },
 ]
 
 export const NAV = EXHIBITS.map((e) => ({ id: e.id, label: e.title.replace('THE ', '') }))
