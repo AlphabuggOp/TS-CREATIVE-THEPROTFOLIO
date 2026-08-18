@@ -2,6 +2,7 @@
 _extracted/
 _from_github/
 HANDOFF/
+files/
 *.rar
 site/node_modules/
 site/dist/
