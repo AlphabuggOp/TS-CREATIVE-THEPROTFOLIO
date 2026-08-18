@@ -1,26 +1,29 @@
 # SANCTUM PORTFOLIO — LOGBOOK
 
-## 2026-08-18 — Build: decoy + seal + full archive
+## 2026-08-18 — Showcase hangar (better than the 22-section plan)
 
-### Studied (no invented facts)
-- Master brief (reference only).
-- Live decoys via fetch_page: SIGNAL & STATIC posts, Andoria copy.
-- Repos via gh: tokens, Seal, CoverBlog, store, slide registry.
-- Drive RAR extracted to `/files/` then copied to `site/public/files/`.
+### Why the previous plan was wrong
+22 sequential sections = a case-study blog. A judge after an 8-minute pitch does not want the pitch again. They want a place that holds the work.
 
-### Built
-- `site/` Vite + React + TS + three / R3F + zustand + self-hosted fonts.
-- Decoy: 3D kyber ring, steel SANCTUM wordmark, three knocks, THE DOOR ASKS, `0528`, ACCESS DENIED shake, optional name.
-- Seal: SVG draw, honest %, status lines, iris, `↑↑↓↓` skip, `?unlock`.
-- Archive: all 22 sections with real write-ups, real file downloads, in-page video + PDFs, team cards, repos, playable ritual, real `~` panic.
-- Showcase frames: first-page composites built from the **actual** decoy photos pulled from the product repos (live Chromium TLS to Vercel is blocked in this sandbox). Frames still redirect to the live URLs.
+### New plan (executed)
+Keep decoy + three knocks + `0528` + Seal.
+Replace the long scroll with **THE HANGAR**: seven exhibits.
+Click an exhibit → chamber iris-opens. ESC returns to the floor.
+
+01 Lives (both decoy frames, click = live site)
+02 Theater (real promo, 60s, 1920×1080@60)
+03 Vault (all 8 Drive files, real download)
+04 Dossier (real write-ups + in-page PDFs)
+05 Rite (ritual + acts + trials + panic)
+06 Council (Aarav / Jeehan / Anuj)
+07 Forge (stack, tokens, both repos)
 
 ### Verified
-- Headless 1366×768: decoy wordmark visible, archive hero/story/journey/team/showcase/files readable.
-- File-card grid was broken (DOWNLOAD stacked wrong) — fixed.
-- Frame aspect cropped SIGNAL title — switched to 16/9.
+- Hangar floor: SANCTUM wordmark + exhibit grid. Lives tile shows both real decoy first pages.
+- Lives chamber: browser frames + OPEN LIVE.
+- No invented copy. Files are the extracted archive.
 
 ### Next
-- Deploy to Vercel + QR once a live URL exists.
-- If a GPU browser can reach Vercel, replace composites with live screenshots.
-- Mobile pass + reduced-motion spot-check.
+- Vercel URL + QR for the last pitch slide.
+- Brighter theater still if the promo grade stays this dark.
+- Mobile pass.

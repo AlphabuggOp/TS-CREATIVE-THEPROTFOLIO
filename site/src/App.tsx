@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import Archive from './components/Archive'
+import Hangar from './components/Hangar'
 import Cursor from './components/Cursor'
 import Decoy from './components/Decoy'
 import Overlays from './components/Overlays'
@@ -68,7 +68,7 @@ export default function App() {
     <>
       <Overlays />
       <Cursor active={!showDecoy} />
-      {showArchive && <Archive />}
+      {showArchive && <Hangar />}
       {showSeal && <Seal onLift={onLift} quick={flags.unlock} />}
       {showDecoy && <Decoy onUnlock={onUnlock} panic={panic} />}
     </>

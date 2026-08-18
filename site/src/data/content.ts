@@ -40,19 +40,19 @@ export const ACTS = [
     id: 'gate',
     act: 'ACT 1',
     title: 'THE GATE',
-    body: 'Six hundred and twenty viewport-heights of scroll-driven cinema. You scroll, and you fly — through a procedural GLSL portal into hyperspace. The transmission resolves. Then the way to the Trials opens.',
+    body: 'Six hundred and twenty viewport-heights of scroll-driven cinema. You scroll, and you fly — through a procedural GLSL portal into hyperspace.',
   },
   {
     id: 'trials',
     act: 'ACT 2',
     title: 'THE TRIALS',
-    body: 'Three playable rites judged by the Archivist. Signal trains the ear. Focus trains the hand. Choice trains the mind — and every verdict becomes a proof game.',
+    body: 'Three playable rites judged by the Archivist. Signal trains the ear. Focus trains the hand. Choice trains the mind.',
   },
   {
     id: 'sanctum',
     act: 'ACT 3',
     title: 'THE SANCTUM',
-    body: 'The hub: a holo-map of beacons and threat zones, a dead-drop cipher, an A* safe-lane router, archives, a council war-room, and a Beacon that forges recruitment posters.',
+    body: 'Holo-map, dead-drop cipher, A* router, archives, council, Beacon forge.',
   },
 ] as const
 
@@ -61,38 +61,38 @@ export const TRIALS = [
     id: 'signal',
     title: 'SIGNAL',
     kicker: 'RITE I · MEMORY',
-    body: 'Drag-rotate a sealed dial to catch a living, drifting frequency. Round I waits still. II slips. III runs with drift. Catch the carrier, hold the window, decode the fragments.',
+    body: 'Drag-rotate a sealed dial to catch a living, drifting frequency. Catch the carrier. Decode the fragments.',
   },
   {
     id: 'focus',
     title: 'FOCUS',
     kicker: 'RITE II · STEADINESS',
-    body: 'Hold your light inside a breathing ring while the void pulls. Three escalating waves. Probe-droids fly past. The ring tightens as your coherence rises.',
+    body: 'Hold your light inside a breathing ring while the void pulls. Three escalating waves.',
   },
   {
     id: 'choice',
     title: 'CHOICE',
     kicker: 'RITE III · JUDGMENT',
-    body: 'Three dilemmas. No wrong answers — only conviction. Every judgment slams a wax-stamp verdict, then demands its proof: a minigame that makes your words become deeds.',
+    body: 'Three dilemmas. No wrong answers — only conviction. Every verdict becomes a proof game.',
   },
 ] as const
 
 export const HUB = [
   { title: 'HOLO-MAP', body: 'Living 3D map of beacons and threat zones.' },
-  { title: 'DEAD-DROP CIPHER', body: 'Encode messages into star-chart coordinates. Your sigil is the key.' },
+  { title: 'DEAD-DROP CIPHER', body: 'Encode messages into star-chart coordinates.' },
   { title: 'SAFE-LANE ROUTER', body: 'A* pathing that avoids patrol zones.' },
   { title: 'ARCHIVES', body: 'Holocron lore and survival guides.' },
   { title: 'COUNCIL', body: 'The war-room board.' },
-  { title: 'BEACON FORGE', body: 'Mint recruitment posters and export them as PNG.' },
+  { title: 'BEACON FORGE', body: 'Mint recruitment posters. Export PNG.' },
 ] as const
 
 export const STACK = [
-  { name: 'Vite + React + TypeScript', why: 'Fully static. Zero servers. Runs anywhere a browser does.' },
-  { name: 'three.js / R3F', why: 'The portal, the tunnel, every setpiece is procedural — no video, no models.' },
-  { name: 'GSAP + Lenis', why: 'Scroll drives a master timeline. Every beat is hand-budgeted.' },
-  { name: 'framer-motion', why: 'State-driven entrances. A reopened chamber replays cleanly.' },
-  { name: 'zustand', why: 'The Sanctum remembers. Rank, callsign, rites persist on-device.' },
-  { name: 'howler / synth audio', why: 'Arms on first gesture. Temple drone and crystal chimes, never autoplay.' },
+  { name: 'Vite + React + TypeScript', why: 'Fully static. Zero servers.' },
+  { name: 'three.js / R3F', why: 'Portal and setpieces are procedural.' },
+  { name: 'GSAP + Lenis', why: 'Scroll drives a master timeline.' },
+  { name: 'framer-motion', why: 'State-driven entrances.' },
+  { name: 'zustand', why: 'The Sanctum remembers on-device.' },
+  { name: 'synth audio', why: 'Arms on first gesture. Never autoplay.' },
 ] as const
 
 export const TOKENS = [
@@ -153,7 +153,7 @@ export const FILES = [
     name: 'TS26_CCA_UIUX_DESIGN.pdf',
     href: '/files/TS26_CCA_UIUX_DESIGN.pdf',
     kind: 'pdf',
-    line: '10-page app dossier. Architecture through hearts/minds/wallets.',
+    line: '10-page app dossier.',
   },
   {
     group: 'Read',
@@ -164,15 +164,24 @@ export const FILES = [
   },
 ] as const
 
-export const NAV = [
-  { id: 'home', label: 'HOME' },
-  { id: 'story', label: 'STORY' },
-  { id: 'journey', label: 'JOURNEY' },
-  { id: 'showcase', label: 'LIVE' },
-  { id: 'files', label: 'FILES' },
-  { id: 'video', label: 'VIDEO' },
-  { id: 'team', label: 'TEAM' },
-] as const
+export type ChamberId = 'lives' | 'theater' | 'vault' | 'dossier' | 'rite' | 'council' | 'forge'
+
+export const EXHIBITS: {
+  id: ChamberId
+  no: string
+  title: string
+  sub: string
+}[] = [
+  { id: 'lives', no: '01', title: 'THE LIVES', sub: 'Both decoys. Click a frame to leave.' },
+  { id: 'theater', no: '02', title: 'THE THEATER', sub: 'The 60-second promo.' },
+  { id: 'vault', no: '03', title: 'THE VAULT', sub: 'Every file from the Drive.' },
+  { id: 'dossier', no: '04', title: 'THE DOSSIER', sub: 'Write-ups and guides, in place.' },
+  { id: 'rite', no: '05', title: 'THE RITE', sub: 'How the door works.' },
+  { id: 'council', no: '06', title: 'THE COUNCIL', sub: 'Aarav · Jeehan · Anuj' },
+  { id: 'forge', no: '07', title: 'THE FORGE', sub: 'Stack, brand, source.' },
+]
+
+export const NAV = EXHIBITS.map((e) => ({ id: e.id, label: e.title.replace('THE ', '') }))
 
 export const STATUS_LINES = [
   'CALIBRATING KYBER LATTICE',
