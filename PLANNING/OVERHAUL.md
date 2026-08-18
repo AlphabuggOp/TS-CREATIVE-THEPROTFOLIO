@@ -5,8 +5,8 @@ Each continue is one phase. Do not skip to deploy.
 
 | Phase | What | Status |
 |---|---|---|
-| **A** | Cinematic hangar floor — 100vh hero, film strip, exhibit runway | **NOW** |
-| **B** | Chambers as rooms — Theater full-bleed, Vault as stacks, Lives as a hangar of frames | next |
+| **A** | Cinematic hangar floor — 100vh hero, film strip, exhibit runway | done |
+| **B** | Chambers as rooms — Theater cinema, Vault stacks, Lives hangar of frames | **NOW** |
 | **C** | Motion law — GSAP scramble, scroll triggers, sound beds | after B |
 | **D** | Artifact density — more promo stills, process, script as an exhibit | after C |
 | **E** | Deploy to Vercel (you click Deploy) | when A–D land |

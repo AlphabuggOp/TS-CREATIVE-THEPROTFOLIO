@@ -28,7 +28,7 @@ function isChamber(id: string | null): id is ChamberId {
 function RitualDemo() {
   const [n, setN] = useState(0)
   return (
-    <div className="ritual">
+    <div className="ritual altar">
       <button
         type="button"
         className="ring-btn"
@@ -39,7 +39,7 @@ function RitualDemo() {
         }}
         aria-label="Knock the ring"
       >
-        <Sigil size={72} />
+        <Sigil size={96} />
         <i className="glow" style={{ opacity: 0.2 + n * 0.25 }} />
       </button>
       <div>
@@ -60,14 +60,11 @@ function RitualDemo() {
 
 function Lives() {
   return (
-    <div className="chamber-body">
+    <div className="room room-lives">
       <p className="kicker">01 · TWO DISGUISES</p>
       <h2 className="section-title">THE LIVES</h2>
-      <p className="lede">
-        The cover is the concept. Each frame is the first thing a stranger sees. Click the chrome
-        and you leave this hangar for the live network.
-      </p>
-      <div className="duo" style={{ marginTop: 28 }}>
+      <p className="lede">The cover is the concept. Click a frame. You leave this hangar for the live network.</p>
+      <div className="frame-hangar">
         <BrowserFrame
           url={LINKS.app}
           href={LINKS.app}
@@ -83,13 +80,13 @@ function Lives() {
           caption="project-sanctum-ppt.vercel.app · HIDE"
         />
       </div>
-      <div className="duo" style={{ marginTop: 18 }}>
-        <article className="card">
+      <div className="plaques">
+        <article>
           <p className="t-mono t-kyber">THE APP</p>
           <h3 className="t-display">SIGNAL &amp; STATIC</h3>
           <p>Abandoned shortwave blog. Est. 2008. Last log 14 Mar 2013. Signed — m. Code <b>0528</b>.</p>
         </article>
-        <article className="card">
+        <article>
           <p className="t-mono t-kyber">THE DECK</p>
           <h3 className="t-display">ANDORIA DEEP-SKY</h3>
           <p>Dead astronomy archive. Est. 1998. Webring #481. Fig. 5 is the door. Code <b>HIDE</b>.</p>
@@ -101,40 +98,45 @@ function Lives() {
 
 function Theater() {
   return (
-    <div className="chamber-body">
-      <p className="kicker">02 · SIXTY SECONDS</p>
-      <h2 className="section-title">THE THEATER</h2>
+    <div className="room room-theater">
+      <div className="cinema-meta">
+        <p className="kicker">02 · SIXTY SECONDS</p>
+        <h2 className="section-title">THE THEATER</h2>
+      </div>
       <video
-        className="player"
+        className="cinema"
         controls
         playsInline
         preload="metadata"
         poster="/shots/promo.jpg"
         src="/files/SANCTUM-Promo.mp4"
       />
-      <p className="t-mono t-dim" style={{ marginTop: 12 }}>
-        <a href="/files/SANCTUM-Promo.mp4" download data-hot>
-          DOWNLOAD THE PROMO →
-        </a>
-      </p>
+      <a className="t-mono room-dl" href="/files/SANCTUM-Promo.mp4" download data-hot>
+        DOWNLOAD THE PROMO →
+      </a>
     </div>
   )
 }
 
 function Vault() {
+  const groups = ['Watch', 'Present', 'Read'] as const
   return (
-    <div className="chamber-body">
+    <div className="room">
       <p className="kicker">03 · THE DRIVE, HUNG</p>
       <h2 className="section-title">THE VAULT</h2>
       <p className="lede">Every deliverable that used to live in a folder. Real downloads.</p>
-      <div className="file-list">
-        {FILES.map((f) => (
-          <a key={f.name} className="file" href={f.href} download data-hot>
-            <span className="t-mono t-ember">{f.group}</span>
-            <strong>{f.name}</strong>
-            <em>{f.line}</em>
-            <b className="t-mono">DOWNLOAD</b>
-          </a>
+      <div className="stacks">
+        {groups.map((g) => (
+          <div key={g} className="stack">
+            <p className="t-mono t-ember stack-label">{g}</p>
+            {FILES.filter((f) => f.group === g).map((f) => (
+              <a key={f.name} className="slab" href={f.href} download data-hot>
+                <strong>{f.name}</strong>
+                <em>{f.line}</em>
+                <b className="t-mono">DOWNLOAD</b>
+              </a>
+            ))}
+          </div>
         ))}
       </div>
     </div>
@@ -144,61 +146,66 @@ function Vault() {
 function Dossier() {
   const [doc, setDoc] = useState('/files/TS26_CCA_WRITEUP.pdf')
   return (
-    <div className="chamber-body">
+    <div className="room">
       <p className="kicker">04 · READ IN PLACE</p>
       <h2 className="section-title">THE DOSSIER</h2>
-      <blockquote className="quote">
-        <p>{APP_WRITEUP}</p>
-        <footer className="t-mono">TS26_CCA_WRITEUP · THE APP</footer>
-      </blockquote>
-      <blockquote className="quote">
-        <p>{DECK_WRITEUP}</p>
-        <footer className="t-mono">SANCTUM-WriteUp · THE DECK</footer>
-      </blockquote>
-      <div className="doc-tabs">
-        {FILES.filter((f) => f.kind === 'pdf').map((f) => (
-          <button
-            key={f.href}
-            type="button"
-            data-hot
-            className={doc === f.href ? 'on' : ''}
-            onClick={() => setDoc(f.href)}
-          >
-            {f.name.replace('.pdf', '')}
-          </button>
-        ))}
+      <div className="desk">
+        <div className="desk-quotes">
+          <blockquote className="quote">
+            <p>{APP_WRITEUP}</p>
+            <footer className="t-mono">TS26_CCA_WRITEUP · THE APP</footer>
+          </blockquote>
+          <blockquote className="quote">
+            <p>{DECK_WRITEUP}</p>
+            <footer className="t-mono">SANCTUM-WriteUp · THE DECK</footer>
+          </blockquote>
+        </div>
+        <div className="desk-reader">
+          <div className="doc-tabs">
+            {FILES.filter((f) => f.kind === 'pdf').map((f) => (
+              <button
+                key={f.href}
+                type="button"
+                data-hot
+                className={doc === f.href ? 'on' : ''}
+                onClick={() => setDoc(f.href)}
+              >
+                {f.name.replace('.pdf', '')}
+              </button>
+            ))}
+          </div>
+          <iframe className="pdf" title="Document" src={doc} />
+          <p className="t-mono" style={{ marginTop: 12 }}>
+            <a href={doc} target="_blank" rel="noreferrer" data-hot>
+              OPEN IN NEW TAB →
+            </a>
+          </p>
+        </div>
       </div>
-      <iframe className="pdf" title="Document" src={doc} />
-      <p className="t-mono" style={{ marginTop: 12 }}>
-        <a href={doc} target="_blank" rel="noreferrer" data-hot>
-          OPEN IN NEW TAB →
-        </a>
-      </p>
     </div>
   )
 }
 
 function Rite() {
   return (
-    <div className="chamber-body">
+    <div className="room">
       <p className="kicker">05 · SECURITY THROUGH LORE</p>
       <h2 className="section-title">THE RITE</h2>
       <p className="lede">
-        After the Purge every public channel is watched. The HCET Syndicate cannot recruit in the
-        open. So SANCTUM hides its front door inside a dead website — and makes finding that door
-        the filter. The password is taught, never told.
+        After the Purge every public channel is watched. SANCTUM hides its front door inside a dead
+        website — and makes finding that door the filter. The password is taught, never told.
       </p>
       <RitualDemo />
-      <div className="acts">
+      <div className="path">
         {ACTS.map((a) => (
-          <article key={a.id} className="card">
+          <article key={a.id} className="step">
             <p className="t-mono t-ember">{a.act}</p>
             <h3 className="t-display">{a.title}</h3>
             <p>{a.body}</p>
           </article>
         ))}
       </div>
-      <div className="cards3" style={{ marginTop: 16 }}>
+      <div className="cards3">
         {TRIALS.map((t) => (
           <article key={t.id} className="card">
             <p className="t-mono t-kyber">{t.kicker}</p>
@@ -217,15 +224,13 @@ function Rite() {
 
 function Council() {
   return (
-    <div className="chamber-body">
+    <div className="room">
       <p className="kicker">06 · COLONELS CENTRAL ACADEMY</p>
       <h2 className="section-title">THE COUNCIL</h2>
-      <div className="cards3">
+      <div className="thrones">
         {TEAM.map((m) => (
-          <article key={m.name} className="card team-card">
-            <div className="plate">
-              <img src={m.plate} alt="" />
-            </div>
+          <article key={m.name} className="throne">
+            <img src={m.plate} alt="" />
             <h3 className="t-display">{m.name}</h3>
             <p className="t-mono t-kyber">{m.role}</p>
             <p>{m.line}</p>
@@ -239,24 +244,24 @@ function Council() {
 
 function Forge() {
   return (
-    <div className="chamber-body">
+    <div className="room">
       <p className="kicker">07 · MOTION MUST MEAN SOMETHING</p>
       <h2 className="section-title">THE FORGE</h2>
-      <div className="cards3">
-        {STACK.map((s) => (
-          <article key={s.name} className="card">
-            <h3>{s.name}</h3>
-            <p>{s.why}</p>
-          </article>
-        ))}
-      </div>
-      <div className="swatches">
+      <div className="wall">
         {TOKENS.map((t) => (
           <article key={t.name}>
             <i style={{ background: t.hex }} />
             <b className="t-mono">{t.name}</b>
             <span className="t-mono">{t.hex}</span>
             <em>{t.use}</em>
+          </article>
+        ))}
+      </div>
+      <div className="cards3">
+        {STACK.map((s) => (
+          <article key={s.name} className="card">
+            <h3>{s.name}</h3>
+            <p>{s.why}</p>
           </article>
         ))}
       </div>
@@ -268,13 +273,13 @@ function Forge() {
           </article>
         ))}
       </div>
-      <div className="duo" style={{ marginTop: 16 }}>
-        <a className="card" href={LINKS.appRepo} target="_blank" rel="noreferrer" data-hot>
+      <div className="benches">
+        <a className="bench" href={LINKS.appRepo} target="_blank" rel="noreferrer" data-hot>
           <p className="t-mono t-kyber">APPLICATION</p>
           <h3>AlphabuggOp / ts-creative</h3>
           <p>The hidden network. Fully static.</p>
         </a>
-        <a className="card" href={LINKS.deckRepo} target="_blank" rel="noreferrer" data-hot>
+        <a className="bench" href={LINKS.deckRepo} target="_blank" rel="noreferrer" data-hot>
           <p className="t-mono t-kyber">PITCH DECK</p>
           <h3>AlphabuggOp / Ts-Creative-PPT</h3>
           <p>Twelve live WebGL slides behind Andoria.</p>
@@ -292,6 +297,16 @@ const CHAMBERS: Record<ChamberId, () => ReactElement> = {
   rite: Rite,
   council: Council,
   forge: Forge,
+}
+
+const BAY_STILL: Record<ChamberId, string | null> = {
+  lives: null,
+  theater: '/shots/promo.jpg',
+  vault: '/shots/promo-20.jpg',
+  dossier: '/shots/promo-35.jpg',
+  rite: '/shots/plate-aarav.png',
+  council: null,
+  forge: '/shots/globe.jpg',
 }
 
 export default function Hangar() {
@@ -367,70 +382,66 @@ export default function Hangar() {
       <div className="floor">
         <div className="floor-hero">
           <p className="kicker">THE ARCHIVE · TEAM CCA</p>
-          <h1 className="hero-word">
-            {'SANCTUM'.split('').map((c) => (
-              <span key={c}>{c}</span>
+          <h1 className="hero-word" ref={heroRef}>
+            {'SANCTUM'.split('').map((c, i) => (
+              <span key={`${c}${i}`}>{c}</span>
             ))}
           </h1>
           <p className="hero-line t-mono t-kyber">the network that pretends not to exist</p>
           <p className="lede floor-lede">
             Not a Drive folder. Seven exhibits. Walk the hangar. Open a chamber. Take what you need.
           </p>
+          <p className="t-mono t-ember walk">▽ WALK THE RUNWAY</p>
         </div>
 
         <div className="strip" aria-hidden>
-          <img src="/shots/promo-20.jpg" alt="" />
-          <img src="/shots/promo.jpg" alt="" />
-          <img src="/shots/globe.jpg" alt="" />
-          <img src="/shots/app.png" alt="" />
-          <img src="/shots/deck.png" alt="" />
+          <div className="strip-track">
+            <img src="/shots/promo-20.jpg" alt="" />
+            <img src="/shots/promo.jpg" alt="" />
+            <img src="/shots/globe.jpg" alt="" />
+            <img src="/shots/app.png" alt="" />
+            <img src="/shots/deck.png" alt="" />
+            <img src="/shots/promo-20.jpg" alt="" />
+            <img src="/shots/promo.jpg" alt="" />
+            <img src="/shots/globe.jpg" alt="" />
+          </div>
         </div>
 
-        <div className="exhibits">
-          <motion.button
-            type="button"
-            className="exhibit span2"
-            data-hot
-            onClick={() => open('lives')}
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="exhibit-shots">
-              <img src="/shots/app.png" alt="" />
-              <img src="/shots/deck.png" alt="" />
-            </div>
-            <div className="exhibit-meta">
-              <span className="t-mono t-ember">01</span>
-              <h2 className="t-display">THE LIVES</h2>
-              <p>Both decoys. Click through.</p>
-            </div>
-          </motion.button>
-
-          {EXHIBITS.filter((e) => e.id !== 'lives').map((e, i) => (
+        <div className="runway">
+          {EXHIBITS.map((e, i) => (
             <motion.button
               key={e.id}
               type="button"
-              className="exhibit"
+              className={`bay ${i % 2 ? 'flip' : ''}`}
               data-hot
               onClick={() => open(e.id)}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.12 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              {e.id === 'theater' && <img className="exhibit-still" src="/shots/promo.jpg" alt="" />}
-              {e.id === 'forge' && <img className="exhibit-still" src="/shots/globe.jpg" alt="" />}
-              {e.id === 'council' && (
-                <div className="exhibit-plates">
-                  {TEAM.map((m) => (
-                    <img key={m.name} src={m.plate} alt="" />
-                  ))}
-                </div>
-              )}
-              <span className="t-mono t-ember">{e.no}</span>
-              <h2 className="t-display">{e.title}</h2>
-              <p>{e.sub}</p>
-              <b className="t-mono">ENTER →</b>
+              <div className="bay-visual">
+                {e.id === 'lives' && (
+                  <div className="exhibit-shots tall">
+                    <img src="/shots/app.png" alt="" />
+                    <img src="/shots/deck.png" alt="" />
+                  </div>
+                )}
+                {e.id === 'council' && (
+                  <div className="exhibit-shots tall three">
+                    {TEAM.map((m) => (
+                      <img key={m.name} src={m.plate} alt="" />
+                    ))}
+                  </div>
+                )}
+                {BAY_STILL[e.id] && <img src={BAY_STILL[e.id]!} alt="" />}
+              </div>
+              <div className="bay-copy">
+                <span className="t-mono t-ember">{e.no}</span>
+                <h2 className="t-display">{e.title}</h2>
+                <p>{e.sub}</p>
+                <b className="t-mono">ENTER THE CHAMBER →</b>
+              </div>
             </motion.button>
           ))}
         </div>
@@ -454,16 +465,12 @@ export default function Hangar() {
             exit={{ clipPath: 'circle(0% at 50% 8%)' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
+            <button type="button" className="back t-mono" data-hot onClick={close}>
+              ← THE HANGAR
+            </button>
             {(() => {
               const View = CHAMBERS[chamber]
-              return (
-                <>
-                  <button type="button" className="back t-mono" data-hot onClick={close}>
-                    ← THE HANGAR
-                  </button>
-                  <View />
-                </>
-              )
+              return <View />
             })()}
           </motion.div>
         )}
@@ -516,127 +523,121 @@ const css = `
 @keyframes film { to { transform: translateX(-50%); } }
 .runway { display: grid; gap: 28px; }
 .bay {
-  display: grid; grid-template-columns: 1.3fr .9fr; min-height: 52vh;
+  display: grid; grid-template-columns: 1.25fr .85fr; min-height: 52vh;
   border: 1px solid rgba(103,232,249,.16); background: rgba(11,16,28,.55);
   overflow: hidden; text-align: left; padding: 0;
   transition: border-color .35s, box-shadow .35s, transform .45s var(--ease-out);
 }
-.bay.flip { grid-template-columns: .9fr 1.3fr; }
+.bay.flip { grid-template-columns: .85fr 1.25fr; }
 .bay.flip .bay-visual { order: 2; }
 .bay:hover {
   transform: translateY(-6px);
   border-color: rgba(103,232,249,.5);
   box-shadow: 0 24px 70px rgba(0,0,0,.45), 0 0 36px rgba(103,232,249,.1);
 }
-.bay-visual, .bay-visual img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; object-position: top center; }
+.bay-visual { overflow: hidden; min-height: 280px; }
+.bay-visual img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; object-position: top center; display: block; }
 .bay-copy { padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
 .bay-copy h2 { letter-spacing: .14em; font-size: clamp(28px, 4vw, 48px); }
 .bay-copy p { color: var(--ghost); font-size: 15px; line-height: 1.6; }
 .bay-copy b { margin-top: 12px; font-size: 11px; letter-spacing: .22em; color: var(--ember); }
-.exhibits {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-}
-.exhibit {
-  text-align: left; padding: 22px;
-  border: 1px solid rgba(103,232,249,.14);
-  background: rgba(11,16,28,.7);
-  min-height: 180px;
-  display: flex; flex-direction: column; gap: 8px;
-  transition: transform .35s var(--ease-out), border-color .35s, box-shadow .35s;
-}
-.exhibit:hover {
-  transform: translateY(-6px);
-  border-color: rgba(103,232,249,.5);
-  box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 30px rgba(103,232,249,.1);
-}
-.exhibit h2 { letter-spacing: .12em; font-size: 22px; }
-.exhibit p { color: var(--ghost); font-size: 14px; line-height: 1.5; }
-.exhibit b { margin-top: auto; font-size: 10px; letter-spacing: .2em; color: var(--ember); }
-.span2 { grid-column: span 2; padding: 0; overflow: hidden; min-height: 280px; }
-.exhibit-shots { display: grid; grid-template-columns: 1fr 1fr; height: 210px; }
+.exhibit-shots { display: grid; grid-template-columns: 1fr 1fr; height: 100%; min-height: 280px; }
+.exhibit-shots.three { grid-template-columns: 1fr 1fr 1fr; }
 .exhibit-shots img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.exhibit-meta { padding: 16px 22px 20px; display: flex; flex-direction: column; gap: 6px; }
 .chamber {
   position: fixed; inset: 0; z-index: 24;
   background: var(--ink);
   overflow: auto;
   padding: 78px 0 60px;
 }
-.chamber-body { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
 .back {
-  display: block; width: min(1180px, calc(100% - 36px)); margin: 0 auto 16px;
+  display: block; width: min(1320px, calc(100% - 36px)); margin: 0 auto 16px;
   font-size: 10px; letter-spacing: .22em; color: var(--ember); text-align: left;
 }
-.acts, .cards3, .duo, .swatches, .file-list { display: grid; gap: 14px; margin-top: 28px; }
-.acts { grid-template-columns: repeat(4, 1fr); }
-.cards3 { grid-template-columns: repeat(3, 1fr); }
-.duo { grid-template-columns: 1fr 1fr; }
-.card, .duo article {
+.room { width: min(1320px, calc(100% - 36px)); margin: 0 auto; }
+.frame-hangar { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+.plaques { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+.plaques article, .card, .step, .bench {
   padding: 22px; border: 1px solid rgba(103,232,249,.12); background: rgba(11,16,28,.65);
 }
-.card h3, .duo h3 { margin: 8px 0 10px; letter-spacing: .12em; font-size: 20px; }
-.card p, .duo p { color: var(--ghost); line-height: 1.6; font-size: 14px; }
-.ritual {
-  margin-top: 28px; display: grid; grid-template-columns: 140px 1fr; gap: 24px;
-  align-items: center; padding: 24px; border: 1px solid rgba(103,232,249,.16);
-  background: rgba(11,16,28,.7);
+.plaques h3, .card h3, .step h3, .bench h3 { margin: 8px 0 10px; letter-spacing: .12em; font-size: 20px; }
+.plaques p, .card p, .step p, .bench p { color: var(--ghost); line-height: 1.6; font-size: 14px; }
+.cinema {
+  width: 100%; height: min(74vh, 820px);
+  object-fit: contain; background: #000;
+  border: 1px solid rgba(103,232,249,.2);
+  margin-top: 18px;
 }
-.ring-btn { position: relative; width: 110px; height: 110px; display: grid; place-items: center; }
-.ring-btn .glow {
-  position: absolute; inset: 8px; border-radius: 50%;
-  box-shadow: 0 0 30px rgba(103,232,249,.55); pointer-events: none;
+.room-dl { display: inline-block; margin-top: 14px; letter-spacing: .22em; font-size: 11px; color: var(--ember); }
+.stacks { display: grid; grid-template-columns: .8fr .8fr 1.4fr; gap: 16px; margin-top: 28px; align-items: start; }
+.stack { display: grid; gap: 10px; }
+.stack-label { font-size: 11px; letter-spacing: .28em; }
+.slab {
+  display: grid; gap: 8px; padding: 22px 20px;
+  border: 1px solid rgba(103,232,249,.16); background: rgba(11,16,28,.75);
+  min-height: 120px;
+  transition: border-color .3s, transform .3s;
 }
-.key {
-  display: inline-block; padding: 2px 10px; border: 1px solid rgba(232,180,76,.5);
-  color: var(--ember); font-family: var(--font-mono);
+.slab:hover { border-color: rgba(103,232,249,.5); transform: translateY(-3px); }
+.slab em { color: var(--ghost); font-style: normal; font-size: 13px; }
+.slab b { font-size: 10px; letter-spacing: .18em; color: var(--kyber); }
+.desk { display: grid; grid-template-columns: .85fr 1.15fr; gap: 22px; margin-top: 24px; align-items: start; }
+.desk-quotes { display: grid; gap: 14px; }
+.quote {
+  padding: 22px; border-left: 2px solid var(--kyber);
+  background: rgba(11,16,28,.65); font-size: 15px; line-height: 1.7;
 }
-.swatches { grid-template-columns: repeat(7, 1fr); }
-.swatches article { display: grid; gap: 6px; }
-.swatches i { display: block; height: 54px; border: 1px solid rgba(255,255,255,.08); }
-.swatches b { font-size: 11px; letter-spacing: .16em; }
-.swatches span, .swatches em { font-size: 10px; color: var(--ghost); font-style: normal; }
-.team-card { text-align: center; }
-.plate { display: grid; place-items: center; height: 140px; margin-bottom: 8px; }
-.plate img { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; }
-.exhibit-plates { display: flex; gap: 8px; margin: -6px 0 6px; }
-.exhibit-plates img { width: 42px; height: 42px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(103,232,249,.25); }
-.file-list { grid-template-columns: 1fr; }
-.file {
-  display: grid; grid-template-columns: 88px minmax(0,1fr) auto; grid-template-rows: auto auto;
-  column-gap: 18px; row-gap: 4px; align-items: center;
-  padding: 16px 18px; border: 1px solid rgba(103,232,249,.12); background: rgba(11,16,28,.65);
-}
-.file span { grid-column: 1; grid-row: 1 / span 2; font-size: 10px; letter-spacing: .16em; }
-.file strong { grid-column: 2; grid-row: 1; }
-.file em { grid-column: 2; grid-row: 2; color: var(--ghost); font-style: normal; font-size: 13px; }
-.file b { grid-column: 3; grid-row: 1 / span 2; font-size: 10px; letter-spacing: .18em; color: var(--kyber); }
-.player { width: 100%; margin-top: 24px; border: 1px solid rgba(103,232,249,.16); background: #000; }
-.doc-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 12px; }
+.quote footer { margin-top: 14px; font-size: 10px; letter-spacing: .2em; color: var(--ghost); }
+.doc-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .doc-tabs button {
   padding: 8px 10px; border: 1px solid rgba(103,232,249,.16);
   font-family: var(--font-mono); font-size: 9px; letter-spacing: .12em; color: var(--ghost);
 }
 .doc-tabs button.on { color: var(--kyber); border-color: rgba(103,232,249,.5); }
-.pdf { width: 100%; height: 64vh; border: 1px solid rgba(103,232,249,.16); background: #111; }
-.quote {
-  margin-top: 22px; padding: 24px; border-left: 2px solid var(--kyber);
-  background: rgba(11,16,28,.65); font-size: 16px; line-height: 1.75;
+.pdf { width: 100%; height: 72vh; border: 1px solid rgba(103,232,249,.16); background: #111; }
+.ritual {
+  margin-top: 28px; display: grid; grid-template-columns: 160px 1fr; gap: 24px;
+  align-items: center; padding: 28px; border: 1px solid rgba(103,232,249,.16);
+  background: rgba(11,16,28,.7);
 }
-.quote footer { margin-top: 14px; font-size: 10px; letter-spacing: .2em; color: var(--ghost); }
+.altar { min-height: 200px; }
+.ring-btn { position: relative; width: 120px; height: 120px; display: grid; place-items: center; }
+.ring-btn .glow {
+  position: absolute; inset: 8px; border-radius: 50%;
+  box-shadow: 0 0 30px rgba(103,232,249,.55); pointer-events: none;
+}
+.path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 22px; }
+.cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+.key {
+  display: inline-block; padding: 2px 10px; border: 1px solid rgba(232,180,76,.5);
+  color: var(--ember); font-family: var(--font-mono);
+}
+.thrones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+.throne {
+  min-height: 58vh; padding: 36px 22px 28px; text-align: center;
+  border: 1px solid rgba(103,232,249,.14); background: rgba(11,16,28,.65);
+}
+.throne img { width: 168px; height: 168px; object-fit: cover; border-radius: 50%; margin: 0 auto 18px; display: block; }
+.throne h3 { letter-spacing: .12em; margin-bottom: 8px; }
+.throne p { color: var(--ghost); line-height: 1.6; }
+.wall { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 28px 0 18px; }
+.wall i { display: block; height: 88px; border: 1px solid rgba(255,255,255,.08); }
+.wall b { display: block; font-size: 11px; letter-spacing: .16em; margin-top: 8px; }
+.wall span, .wall em { font-size: 10px; color: var(--ghost); font-style: normal; display: block; }
+.benches { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
 .foot { padding: 64px 0 12px; text-align: center; }
 .foot .t-display { letter-spacing: .2em; font-size: 20px; margin-bottom: 10px; }
 .reset { margin-top: 18px; font-size: 10px; letter-spacing: .2em; color: var(--ghost); }
 @media (max-width: 980px) {
-  .exhibits, .acts, .cards3, .duo, .swatches { grid-template-columns: 1fr; }
-  .span2 { grid-column: auto; }
   .hud-who, .hud-nav { display: none; }
-  .ritual { grid-template-columns: 1fr; }
-  .file { grid-template-columns: 1fr; }
-  .file span, .file b { grid-row: auto; }
-  .exhibit-shots { height: 160px; }
-  .bay, .bay.flip { grid-template-columns: 1fr; min-height: 0; }
+  .bay, .bay.flip, .frame-hangar, .plaques, .stacks, .desk, .path, .cards3, .thrones, .wall, .benches {
+    grid-template-columns: 1fr;
+  }
   .bay.flip .bay-visual { order: 0; }
   .bay-visual, .bay-visual img { min-height: 200px; }
   .strip-track img { height: 110px; width: 176px; }
+  .cinema, .pdf { height: 52vh; }
+  .throne { min-height: 0; }
+  .ritual { grid-template-columns: 1fr; }
 }
 `

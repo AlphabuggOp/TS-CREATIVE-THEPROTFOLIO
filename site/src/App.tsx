@@ -63,6 +63,10 @@ export default function App() {
     if (flags.unlock && !unlocked) unlock('')
   }, [flags.unlock, unlock, unlocked])
 
+  useEffect(() => {
+    if (unlocked && screen === 'decoy' && !flags.forceSeal) setScreen('archive')
+  }, [unlocked, screen, flags.forceSeal])
+
   const showDecoy = screen === 'decoy' || panic
   const showSeal = screen === 'seal' && !panic
   const showArrive = screen === 'arrive' && !panic
