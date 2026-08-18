@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useCallback, useEffect, useState, type ReactElement } from 'react'
+import gsap from 'gsap'
+import { useCallback, useEffect, useRef, useState, type ReactElement } from 'react'
 import { useLenis } from '../lib/lenis'
 import {
   ACTS,
@@ -297,7 +298,18 @@ export default function Hangar() {
   const visitor = useVault((s) => s.visitor)
   const reset = useVault((s) => s.reset)
   const [chamber, setChamber] = useState<ChamberId | null>(null)
+  const heroRef = useRef<HTMLHeadingElement>(null)
   useLenis(!chamber)
+
+  useEffect(() => {
+    if (!heroRef.current) return
+    const chars = heroRef.current.querySelectorAll('span')
+    gsap.fromTo(
+      chars,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, stagger: 0.06, ease: 'power3.out', delay: 0.15 },
+    )
+  }, [])
 
   const open = useCallback((id: ChamberId) => {
     setChamber(id)
@@ -483,15 +495,44 @@ const css = `
 .hud-nav button:hover, .hud-nav button.on { color: var(--kyber); }
 .hud-who { font-size: 9px; letter-spacing: .18em; }
 .floor { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 12px 0 80px; }
-.exhibit-still { width: 100%; height: 92px; object-fit: cover; object-position: center; margin: -22px -22px 10px; width: calc(100% + 44px); }
-.floor-hero { padding: 24px 0 36px; }
+.floor-hero {
+  min-height: calc(100vh - 72px);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 24px 0 48px;
+}
 .hero-word {
   font-family: var(--font-display); font-weight: 900;
-  font-size: clamp(56px, 11vw, 128px); letter-spacing: .14em; line-height: .9;
+  font-size: clamp(64px, 14vw, 168px); letter-spacing: .14em; line-height: .86;
   color: #eef6f8; text-shadow: 0 0 28px rgba(103,232,249,.3);
 }
-.hero-line { margin-top: 14px; letter-spacing: .32em; font-size: 13px; }
+.hero-word span { display: inline-block; }
+.hero-line { margin-top: 18px; letter-spacing: .32em; font-size: 13px; }
 .floor-lede { max-width: 62ch; }
+.walk { margin-top: 48px; letter-spacing: .32em; font-size: 11px; animation: chev 1.6s ease-in-out infinite; }
+@keyframes chev { 0%,100% { transform: translateY(0); opacity: .55; } 50% { transform: translateY(7px); opacity: 1; } }
+.strip { overflow: hidden; margin: 0 calc(50% - 50vw) 56px; width: 100vw; border-top: 1px solid rgba(103,232,249,.12); border-bottom: 1px solid rgba(103,232,249,.12); }
+.strip-track { display: flex; gap: 8px; width: max-content; animation: film 42s linear infinite; }
+.strip-track img { height: 168px; width: 280px; object-fit: cover; filter: saturate(.75) contrast(1.05); }
+@keyframes film { to { transform: translateX(-50%); } }
+.runway { display: grid; gap: 28px; }
+.bay {
+  display: grid; grid-template-columns: 1.3fr .9fr; min-height: 52vh;
+  border: 1px solid rgba(103,232,249,.16); background: rgba(11,16,28,.55);
+  overflow: hidden; text-align: left; padding: 0;
+  transition: border-color .35s, box-shadow .35s, transform .45s var(--ease-out);
+}
+.bay.flip { grid-template-columns: .9fr 1.3fr; }
+.bay.flip .bay-visual { order: 2; }
+.bay:hover {
+  transform: translateY(-6px);
+  border-color: rgba(103,232,249,.5);
+  box-shadow: 0 24px 70px rgba(0,0,0,.45), 0 0 36px rgba(103,232,249,.1);
+}
+.bay-visual, .bay-visual img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; object-position: top center; }
+.bay-copy { padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.bay-copy h2 { letter-spacing: .14em; font-size: clamp(28px, 4vw, 48px); }
+.bay-copy p { color: var(--ghost); font-size: 15px; line-height: 1.6; }
+.bay-copy b { margin-top: 12px; font-size: 11px; letter-spacing: .22em; color: var(--ember); }
 .exhibits {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
 }
@@ -593,5 +634,9 @@ const css = `
   .file { grid-template-columns: 1fr; }
   .file span, .file b { grid-row: auto; }
   .exhibit-shots { height: 160px; }
+  .bay, .bay.flip { grid-template-columns: 1fr; min-height: 0; }
+  .bay.flip .bay-visual { order: 0; }
+  .bay-visual, .bay-visual img { min-height: 200px; }
+  .strip-track img { height: 110px; width: 176px; }
 }
 `
