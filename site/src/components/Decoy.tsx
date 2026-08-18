@@ -18,6 +18,7 @@ export default function Decoy({ onUnlock, panic }: Props) {
   const [nameStep, setNameStep] = useState(false)
   const [name, setName] = useState('')
   const [flicker, setFlicker] = useState('')
+  const [nudge, setNudge] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
 
@@ -33,7 +34,11 @@ export default function Decoy({ onUnlock, panic }: Props) {
       setFlicker('0528')
       window.setTimeout(() => setFlicker(''), 180)
     }, 12000)
-    return () => window.clearInterval(id)
+    const n = window.setTimeout(() => setNudge(true), 3200)
+    return () => {
+      window.clearInterval(id)
+      window.clearTimeout(n)
+    }
   }, [])
 
   const knock = () => {
@@ -91,8 +96,8 @@ export default function Decoy({ onUnlock, panic }: Props) {
         <p className="decoy-sub t-mono t-kyber">THE NETWORK THAT PRETENDS NOT TO EXIST</p>
 
         {!asks && !nameStep && (
-          <p className="decoy-hint t-mono t-dim">
-            {knocks === 0 && 'the ring remembers a doorbell'}
+          <p className={`decoy-hint t-mono ${nudge && knocks === 0 ? 't-ember' : 't-dim'}`}>
+            {knocks === 0 && (nudge ? 'click the ring · three times' : 'the ring remembers a doorbell')}
             {knocks === 1 && 'one'}
             {knocks === 2 && 'two'}
             {knocks >= 3 && 'three'}
@@ -184,6 +189,8 @@ const decoyCss = `
 }
 .decoy-sub { margin-top: 18px; font-size: 12px; letter-spacing: .38em; }
 .decoy-hint { margin-top: 54px; font-size: 11px; letter-spacing: .28em; }
+.decoy-hint.t-ember { animation: hintPulse 1.6s ease-in-out infinite; }
+@keyframes hintPulse { 50% { opacity: .45; } }
 .door { margin-top: 40px; width: min(420px, 92vw); }
 .door-ask { font-size: 13px; letter-spacing: .34em; margin-bottom: 16px; }
 .door input {

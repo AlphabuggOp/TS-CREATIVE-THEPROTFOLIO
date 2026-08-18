@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useState, type ReactElement } from 'react'
+import { useLenis } from '../lib/lenis'
 import {
   ACTS,
   APP_WRITEUP,
@@ -296,6 +297,7 @@ export default function Hangar() {
   const visitor = useVault((s) => s.visitor)
   const reset = useVault((s) => s.reset)
   const [chamber, setChamber] = useState<ChamberId | null>(null)
+  useLenis(!chamber)
 
   const open = useCallback((id: ChamberId) => {
     setChamber(id)
@@ -353,16 +355,35 @@ export default function Hangar() {
       <div className="floor">
         <div className="floor-hero">
           <p className="kicker">THE ARCHIVE · TEAM CCA</p>
-          <h1 className="hero-word">SANCTUM</h1>
+          <h1 className="hero-word">
+            {'SANCTUM'.split('').map((c) => (
+              <span key={c}>{c}</span>
+            ))}
+          </h1>
           <p className="hero-line t-mono t-kyber">the network that pretends not to exist</p>
           <p className="lede floor-lede">
-            Not a Drive folder. Seven exhibits. The lives, the promo, the files, the documents, the
-            rite, the council, the forge. Pick one.
+            Not a Drive folder. Seven exhibits. Walk the hangar. Open a chamber. Take what you need.
           </p>
         </div>
 
+        <div className="strip" aria-hidden>
+          <img src="/shots/promo-20.jpg" alt="" />
+          <img src="/shots/promo.jpg" alt="" />
+          <img src="/shots/globe.jpg" alt="" />
+          <img src="/shots/app.png" alt="" />
+          <img src="/shots/deck.png" alt="" />
+        </div>
+
         <div className="exhibits">
-          <button type="button" className="exhibit span2" data-hot onClick={() => open('lives')}>
+          <motion.button
+            type="button"
+            className="exhibit span2"
+            data-hot
+            onClick={() => open('lives')}
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="exhibit-shots">
               <img src="/shots/app.png" alt="" />
               <img src="/shots/deck.png" alt="" />
@@ -372,10 +393,19 @@ export default function Hangar() {
               <h2 className="t-display">THE LIVES</h2>
               <p>Both decoys. Click through.</p>
             </div>
-          </button>
+          </motion.button>
 
-          {EXHIBITS.filter((e) => e.id !== 'lives').map((e) => (
-            <button key={e.id} type="button" className="exhibit" data-hot onClick={() => open(e.id)}>
+          {EXHIBITS.filter((e) => e.id !== 'lives').map((e, i) => (
+            <motion.button
+              key={e.id}
+              type="button"
+              className="exhibit"
+              data-hot
+              onClick={() => open(e.id)}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.12 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            >
               {e.id === 'theater' && <img className="exhibit-still" src="/shots/promo.jpg" alt="" />}
               {e.id === 'forge' && <img className="exhibit-still" src="/shots/globe.jpg" alt="" />}
               {e.id === 'council' && (
@@ -389,7 +419,7 @@ export default function Hangar() {
               <h2 className="t-display">{e.title}</h2>
               <p>{e.sub}</p>
               <b className="t-mono">ENTER →</b>
-            </button>
+            </motion.button>
           ))}
         </div>
 

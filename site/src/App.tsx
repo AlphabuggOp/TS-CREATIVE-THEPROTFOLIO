@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import Arrival from './components/Arrival'
 import Hangar from './components/Hangar'
 import Cursor from './components/Cursor'
 import Decoy from './components/Decoy'
@@ -6,7 +7,7 @@ import Overlays from './components/Overlays'
 import Seal from './components/Seal'
 import { useVault } from './store'
 
-type Screen = 'decoy' | 'seal' | 'archive'
+type Screen = 'decoy' | 'seal' | 'arrive' | 'archive'
 
 function readFlags() {
   const q = new URLSearchParams(window.location.search)
@@ -40,8 +41,10 @@ export default function App() {
 
   const onLift = useCallback(() => {
     markSeal()
-    setScreen('archive')
+    setScreen('arrive')
   }, [markSeal])
+
+  const onArrived = useCallback(() => setScreen('archive'), [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -62,13 +65,15 @@ export default function App() {
 
   const showDecoy = screen === 'decoy' || panic
   const showSeal = screen === 'seal' && !panic
-  const showArchive = screen === 'seal' || screen === 'archive'
+  const showArrive = screen === 'arrive' && !panic
+  const showArchive = screen === 'seal' || screen === 'arrive' || screen === 'archive'
 
   return (
     <>
       <Overlays />
       <Cursor active={!showDecoy} />
       {showArchive && <Hangar />}
+      {showArrive && <Arrival onDone={onArrived} />}
       {showSeal && <Seal onLift={onLift} quick={flags.unlock} />}
       {showDecoy && <Decoy onUnlock={onUnlock} panic={panic} />}
     </>
